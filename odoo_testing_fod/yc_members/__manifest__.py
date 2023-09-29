@@ -10,7 +10,7 @@
         Long description of module's purpose
     """,
 
-    'author': "YC Fitness Ltd",
+    'author': "AA Ltd",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -30,4 +30,5 @@
         'views/configuration_views.xml',
         'views/res_partner_views.xml'
     ],
+    'license': 'GPL-3'
 }
