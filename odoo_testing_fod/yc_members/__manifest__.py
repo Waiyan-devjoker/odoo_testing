@@ -30,5 +30,5 @@
         'views/configuration_views.xml',
         'views/res_partner_views.xml'
     ],
-    'license': 'GPL-3'
+    'license': 'LGPL-3'
 }
