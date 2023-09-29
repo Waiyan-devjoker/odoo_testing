@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_member_plan,member.plan,model_member_plan,,1,1,1,1
+access_member_type_level,member.type.level,model_member_type_level,,1,1,1,1
+access_member_request,member.request,model_member_request,,1,1,1,1
+access_payment,payment,model_payment,,1,1,1,1
+access_bank_information,bank.information,model_bank_information,,1,1,1,1

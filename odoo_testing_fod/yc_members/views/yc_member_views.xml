@@ -1,0 +1,281 @@
+<odoo>
+    <data>
+        <menuitem id="member_menu_main" name="Members" sequence="100"
+              web_icon="yc_members,static/description/icon.png"/>
+        <record id="member_plan_form" model="ir.ui.view">
+            <field name="name">member.plan.form</field>
+            <field name="model">member.plan</field>
+            <field name="arch" type="xml">
+                <form string="Member Plan" >
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="member_type" />
+                                <field name="member_type_level_id" />
+                                <label for="duration" string="Duration" />
+                                <div>
+                                    <div class="o_row">
+                                        <field name="duration" class="oe_inline" />
+                                        <span>Months</span>
+                                    </div>
+                                </div>
+                                <field name="price" />
+                                <field name="pros" />
+                                <field name="cons" />
+                                <field name="appendix" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div> -->
+                </form>
+            </field>
+        </record>
+        <record id="member_plan_tree" model="ir.ui.view">
+            <field name="name">member.plan.tree</field>
+            <field name="model">member.plan</field>
+            <field name="arch" type="xml">
+                <tree string="Member Plan" >
+                    <field name="member_type" />
+                    <field name="duration" />
+                    <field name="price" />
+                    <field name="pros" />
+                    <field name="cons" />
+                    <field name="appendix" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Search View -->
+        <record id="member_plan_search_filter" model="ir.ui.view">
+            <field name="name">Member Plan Search</field>
+            <field name="model">member.plan</field>
+            <field name="arch" type="xml">
+                <search string="Member Plan">
+                    <field name="member_type" />
+                    <field name="price" />
+                    <field name="duration" />
+                    <field name="pros" />
+                    <field name="cons" />
+                    <field name="appendix" />      
+                </search>
+            </field>
+        </record>
+
+        <record id="member_plan_action" model="ir.actions.act_window">
+            <field name="name">Member Plan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">member.plan</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="member_plan_search_filter" />
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Member Plan.
+                </p>
+            </field>
+        </record>
+
+        <!-- Member Type Level(Shop) -->
+        
+        <record id="member_type_level_form" model="ir.ui.view">
+            <field name="name">member.type.level.form</field>
+            <field name="model">member.type.level</field>
+            <field name="arch" type="xml">
+                <form string="Member Type Level(Shop)" >
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <label for="duration" string="Duration" />
+                                <div>
+                                    <div class="o_row">
+                                        <field name="duration" class="oe_inline" />
+                                        <span>Months</span>
+                                    </div>
+                                </div>
+                                <field name="price" />
+                            </group>
+                            <group>
+                                <field name="count" />
+                                <field name="pros" />
+                                <field name="cons" />
+                                <field name="appendix" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div> -->
+                </form>
+            </field>
+        </record>
+        <record id="member_type_level_tree" model="ir.ui.view">
+            <field name="name">member.type.level.tree</field>
+            <field name="model">member.type.level</field>
+            <field name="arch" type="xml">
+                <tree string="Member Type Level(Shop)" >
+                    <field name="name" />
+                    <field name="price" />
+                    <field name="duration" />
+                    <field name="count" />
+                    <field name="pros" />
+                    <field name="cons" />
+                    <field name="appendix" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Search View -->
+        <record id="member_type_level_search_filter" model="ir.ui.view">
+            <field name="name">Member Type Level Search</field>
+            <field name="model">member.type.level</field>
+            <field name="arch" type="xml">
+                <search string="Member Type Level(Shop)">
+                    <field name="name" />
+                    <field name="price" />
+                    <field name="duration" />
+                    <field name="count" />
+                    <field name="pros" />
+                    <field name="cons" />
+                    <field name="appendix" />      
+                </search>
+            </field>
+        </record>
+
+        <record id="member_type_level_action" model="ir.actions.act_window">
+            <field name="name">Member Type Level(Shop)</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">member.type.level</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="member_type_level_search_filter" />
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Member Type Level(Shop).
+                </p>
+            </field>
+        </record>
+
+        <!-- Member Plan/Shop -->
+        <record id="member_request_form" model="ir.ui.view">
+            <field name="name">member.request.form</field>
+            <field name="model">member.request</field>
+            <field name="arch" type="xml">
+                <form string="Member Plan" >
+                    <header>
+                        <button name="action_request" string="Request" type="object" data-hotkey="w" class="oe_highlight" states="draft"/>
+                        <button name="action_confirm" string="Confirm" type="object" data-hotkey="w" class="oe_highlight" states="request"/>
+                        <button name="action_expired" string="Expired" type="object" data-hotkey="w" class="oe_highlight" states="confirm"/>
+                        <button name="action_reset" string="Reset" type="object" data-hotkey="w" class="oe_highlight" groups="base.group_no_one"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,request,confirm,expired" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="action_view_payment" icon="fa-dollor">
+                                <field string="Payment" name="payment_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="partner_id" />
+                                <field name="request_type" />
+                                <field name="shop_name" attrs="{'invisible': [('request_type','=', 'plan')]}"/>
+                                <field name="member_type_level_id" attrs="{'invisible': [('request_type','=', 'plan')]}"/>
+                                <field name="member_plan_id" attrs="{'invisible': [('request_type','=', 'shop')]}"/>
+                                <label for="duration" string="Duration" />
+                                <div>
+                                    <div class="o_row">
+                                        <field name="duration" class="oe_inline" />
+                                        <span>Months</span>
+                                    </div>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="price" />
+                                <field name="pros" />
+                                <field name="cons" />
+                                <field name="date" />
+                                <field name="confirm_date" attrs="{'invisible': [('state','not in', ('confirm','expired'))]}"/>
+                                <field name="expired_date" attrs="{'invisible': [('state','not in', ('confirm','expired'))]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div> -->
+                </form>
+            </field>
+        </record>
+        <record id="member_request_tree" model="ir.ui.view">
+            <field name="name">member.request.tree</field>
+            <field name="model">member.request</field>
+            <field name="arch" type="xml">
+                <tree string="Member Request" >
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="request_type" />
+                    <field name="duration" />
+                    <field name="price" />
+                    <field name="pros" />
+                    <field name="cons" />
+                    <field name="date"/>
+                    <field name="state" />
+                    <field name="shop_name" optional="hide" />
+                    <field name="confirm_date" optional="hide" />
+                    <field name="expired_date" optional="hide" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Search View -->
+        <record id="member_request_search_filter" model="ir.ui.view">
+            <field name="name">Member Request Search</field>
+            <field name="model">member.request</field>
+            <field name="arch" type="xml">
+                <search string="Member Request">        
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="request_type" />
+                    <field name="request_type" />
+                    <field name="price" />
+                    <field name="duration" />
+                    <field name="pros" />
+                    <field name="cons" />
+                    <field name="date"/>
+                    <field name="state" />
+                    <field name="shop_name" />
+                </search>
+            </field>
+        </record>
+
+        <record id="member_request_action" model="ir.actions.act_window">
+            <field name="name">Member Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">member.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="member_request_search_filter" />
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Member Request.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Members" id="menu_members" parent="member_menu_main" sequence="6"/>
+        <menuitem name="Member Plan" id="menu_member_plan" action="member_plan_action"
+                parent="menu_members" sequence="1"/>
+        <menuitem name="Member Type Level(Shop)" id="menu_member_type_level" action="member_type_level_action"
+                parent="menu_members" sequence="2"/>
+        <menuitem name="Member Request" id="menu_member_request" action="member_request_action"
+                parent="menu_members" sequence="3"/>
+    </data>
+</odoo>

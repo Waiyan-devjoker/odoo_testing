@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="view_pbank_info_form" model="ir.ui.view">
+            <field name="name">bank.form</field>
+            <field name="model">bank.information</field>
+            <field name="arch" type="xml">
+                <form string="Bank Info" >
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="payment_type" />
+                                <field name="account_number" />
+                                <field name="account_holder" />
+                                <field name="phone" />
+                            </group>
+                            <div>
+                                <field name="image" widget="image" class="oe_avatar" style="float: left;"/>
+                            </div>
+                        </group>
+                    </sheet>
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div> -->
+                </form>
+            </field>
+        </record>
+        <record id="bank_info_tree" model="ir.ui.view">
+            <field name="name">bank_info.tree</field>
+            <field name="model">bank.information</field>
+            <field name="arch" type="xml">
+                <tree string="Bank Info" >
+                    <field name="name" />
+                    <field name="payment_type" />
+                    <field name="account_number" />
+                    <field name="account_holder" />
+                    <field name="phone" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Search View -->
+        <record id="bank_info_search_filter" model="ir.ui.view">
+            <field name="name">Bank Info Search</field>
+            <field name="model">bank.information</field>
+            <field name="arch" type="xml">
+                <search string="Bank Info">        
+                    <field name="name" />
+                    <field name="payment_type" />
+                    <field name="account_number" />
+                    <field name="account_holder" />
+                    <field name="phone" />
+                </search>
+            </field>
+        </record>
+
+        <record id="bank_info_action" model="ir.actions.act_window">
+            <field name="name">Bank Info</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.information</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="bank_info_search_filter" />
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Bank Info.
+                </p>
+            </field>
+        </record>
+
+        <!-- Bank Information -->
+
+        <menuitem name="Configurations" id="menu_config" parent="member_menu_main" sequence="100"/>
+        <menuitem name="Bank Information" id="menu_bank_info" action="bank_info_action"
+                parent="menu_config" sequence="1"/>
+    </data>
+</odoo>

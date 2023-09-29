@@ -1,0 +1,111 @@
+<odoo>
+    <data>
+        <record id="view_payment_form" model="ir.ui.view">
+            <field name="name">payment.form</field>
+            <field name="model">payment</field>
+            <field name="arch" type="xml">
+                <form string="Payments" >
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object" data-hotkey="w" class="oe_highlight"
+                                states="draft"/>
+                        <button name="action_paid" string="Paid" type="object" data-hotkey="w" class="oe_highlight"
+                        states="confirm"/>
+                        <!-- <button name="action_cancel" string="Cancel" type="object" data-hotkey="w" class="oe_highlight"
+                        states=""/> -->
+                        <button name="action_reset" string="Reset" type="object" data-hotkey="w" class="oe_highlight" groups="base.group_no_one"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,paid" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Payment Information">
+                                <field name="name" />
+                                <field name="request_id"  domain ="[('state','=', 'request')]" />
+                                <field name="amount" />
+                                <field name="date" />
+                            </group>
+                            <group string="YC Bank Information">
+                                <field name="bank_id" />
+                                <field name="payment_type" />
+                                <field name="account_number" /> 
+                                <field name="account_holder" /> 
+                                <field name="phone" />
+                            </group>
+                            <group string="Client Information">
+                                <field name="partner_id" />
+                                <field name="bank_name" />
+                                <field name="client_account_number" /> 
+                                <field name="client_account_holder" />
+                                <field name="client_phone" />  
+                                <field name="photo" widget="image" class="oe_avatar" style="float: left;"/>
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div> -->
+                </form>
+            </field>
+        </record>
+        <record id="payment_tree" model="ir.ui.view">
+            <field name="name">payment.tree</field>
+            <field name="model">payment</field>
+            <field name="arch" type="xml">
+                <tree string="Payments" >
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="request_id" />
+                    <field name="amount" />
+                    <field name="bank_id" />
+                    <field name="phone" optional="hide"/>
+                    <field name="date" />
+                    <field name="state" />
+                    <field name="account_number" optional="hide"/>
+                    <field name="account_holder" optional="hide"/>
+                    <field name="bank_name" optional="hide" />
+                    <field name="client_account_number" optional="hide" /> 
+                    <field name="client_account_holder" optional="hide" />
+                    <field name="client_phone" optional="hide" /> 
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Search View -->
+        <record id="payment_search_filter" model="ir.ui.view">
+            <field name="name">Payments Search</field>
+            <field name="model">payment</field>
+            <field name="arch" type="xml">
+                <search string="Payments">        
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="request_id" />
+                    <field name="bank_id" />
+                    <field name="phone" />
+                    <field name="date" />
+                    <field name="state" />
+                </search>
+            </field>
+        </record>
+
+        <record id="payment_action" model="ir.actions.act_window">
+            <field name="name">Payments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="payment_search_filter" />
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p>
+                    Payments.
+                </p>
+            </field>
+        </record>
+
+        <!-- Bank Information -->
+
+        <menuitem name="Payments" id="menu_payments" parent="member_menu_main" sequence="6"/>
+        <menuitem name="Payments" id="menu_payment" action="payment_action"
+                parent="menu_payments" sequence="1"/>
+    </data>
+</odoo>
